@@ -31,7 +31,7 @@ public class PN extends Ordination{
      */
     public boolean givDosis(LocalDate givesDen) {
         if(!givesDen.isBefore(this.getStartDen()) && !givesDen.isAfter(this.getSlutDen()))  {
-            if(!givesDen.isBefore(doseringer.get(doseringer.size() - 1))) {
+            if(doseringer.size() == 0 || !givesDen.isBefore(doseringer.get(doseringer.size() - 1))) {
                 doseringer.add(givesDen);
             }
             return true;
