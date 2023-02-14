@@ -12,7 +12,7 @@ public class PN extends Ordination{
     private double antalEnheder;  // Antal enheder per dosis
 
     /**
-     * Konstruerer en PN ordinering
+     * Opretter en PN ordinering
      * @param startDen startdato
      * @param slutDen slutdato
      * @param antalEnheder antal enheder per dosis
