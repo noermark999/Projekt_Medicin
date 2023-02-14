@@ -38,7 +38,7 @@ public class Controller {
 	 * @return opretter og returnerer en PN ordination.
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double antal) {
-		if(startDen.isBefore(slutDen)) {
+		if(startDen.isAfter(slutDen)) {
 			throw new IllegalArgumentException("Start dato skal komme inden slutdato");
 		} else {
 			PN pn = new PN(startDen, slutDen, antal);
