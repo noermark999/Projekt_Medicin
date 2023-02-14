@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+/**
+ * Denne klasse modellerer en PN ordination
+ */
 public class PN extends Ordination{
     private ArrayList<LocalDate> doseringer;  // Givet doseringer
     private double antalEnheder;  // Antal enheder per dosis
