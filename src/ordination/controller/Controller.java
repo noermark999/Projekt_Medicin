@@ -83,8 +83,19 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		// TODO
-		return null;
+		if (slutDen.isBefore(startDen)) {
+			throw new IllegalArgumentException("Slut dato er efter startdato");
+		} else if (klokkeSlet.length != antalEnheder.length) {
+			throw new IllegalArgumentException("Antal klokkeslet og enheder passer ikke sammen");
+		} else {
+			DagligSkaev dagligSkaev = new DagligSkaev(startDen, slutDen);
+			dagligSkaev.setLaegemiddel(laegemiddel);
+			patient.addOrdination(dagligSkaev);
+			for (int i = 0; i < klokkeSlet.length; i++) {
+				dagligSkaev.opretDosis(klokkeSlet[i], antalEnheder[i]);
+			}
+			return dagligSkaev;
+		}
 	}
 
 	/**
