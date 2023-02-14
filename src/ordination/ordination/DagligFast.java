@@ -1,5 +1,7 @@
 package ordination.ordination;
 
-public class DagligFast {
-    // TODO
+public class DagligFast extends Ordination {
+
+    public DagligFast() {
+    }
 }
