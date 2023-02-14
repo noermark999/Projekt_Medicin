@@ -7,14 +7,24 @@ import java.util.List;
 import ordination.ordination.*;
 import ordination.storage.Storage;
 
+/**
+ * Controller-klasse
+ */
 public class Controller {
-	private Storage storage;
-	private static Controller controller;
+	private Storage storage; // Controllerens storage
+	private static Controller controller; // Statisk Controller
 
+	/**
+	 * Opretter en Controller
+	 */
 	private Controller() {
 		storage = new Storage();
 	}
 
+	/**
+	 * Returnerer Controller hvis der er en, ellers opretter ny controller
+	 * @return
+	 */
 	public static Controller getController() {
 		if (controller == null) {
 			controller = new Controller();
@@ -22,6 +32,10 @@ public class Controller {
 		return controller;
 	}
 
+	/**
+	 * Returnerer Controller
+	 * @return
+	 */
 	public static Controller getTestController() {
 		return new Controller();
 	}
@@ -143,10 +157,18 @@ public class Controller {
 		return result;
 	}
 
+	/**
+	 * Returnerer alle patienter i storage
+	 * @return patienterne i storage
+	 */
 	public List<Patient> getAllPatienter() {
 		return storage.getAllPatienter();
 	}
 
+	/**
+	 * Returnerer alle laegemidler i storage
+	 * @return alle laegemidler i storage
+	 */
 	public List<Laegemiddel> getAllLaegemidler() {
 		return storage.getAllLaegemidler();
 	}
