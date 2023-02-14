@@ -19,7 +19,7 @@ public class DagligFast extends Ordination {
         for (int i = 0; i < 4; i++) {
             result += doser[i].getAntal();
         }
-        return result;
+        return result * (DAYS.between(getStartDen(),getSlutDen())+1);
     }
 
     @Override
