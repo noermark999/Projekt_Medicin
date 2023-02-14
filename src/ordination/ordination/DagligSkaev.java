@@ -30,15 +30,16 @@ public class DagligSkaev extends Ordination{
     public double samletDosis() {
        double sum = 0;
         for (Dosis dosis : doser) {
-
+            sum = sum + dosis.getAntal();
        }
+        return sum;
     }
 
     @Override
     public double doegnDosis() {
         double sum = 0;
         for (Dosis dosis : doser) {
-
+            sum = sum
         }
 
     }
