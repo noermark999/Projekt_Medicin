@@ -9,7 +9,7 @@ import ordination.ordination.DagligSkaev;
 import ordination.ordination.Laegemiddel;
 import ordination.ordination.PN;
 import ordination.ordination.Patient;
-import storage.Storage;
+import ordination.storage.Storage;
 
 public class Controller {
 	private Storage storage;
