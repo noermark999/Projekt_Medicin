@@ -89,15 +89,13 @@ public class Controller {
 
 	/**
 	 * En dato for hvornår ordinationen anvendes tilføjes ordinationen. Hvis
-	 * datoen ikke er indenfor ordinationens gyldighedsperiode kastes en
-	 * IllegalArgumentException
+	 * datoen ikke er indenfor ordinationens gyldighedsperiode, eller den ikke
+	 * forekommer efter de andre allerede anvendelser, kastes en IllegalArgumentException
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		if(dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
+		if(!ordination.givDosis(dato)) { //TODO : oprettes en dosis her? Eller tilføj else-statement
 			throw new IllegalArgumentException("Datoen er ugyldig");
-		} else {
-			ordination.givDosis(dato);
 		}
 	}
 
