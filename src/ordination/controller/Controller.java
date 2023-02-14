@@ -94,7 +94,11 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+		if(dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
+			throw new IllegalArgumentException("Datoen er ugyldig");
+		} else {
+			ordination.givDosis(dato);
+		}
 	}
 
 	/**
