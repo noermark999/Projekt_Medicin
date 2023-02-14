@@ -26,7 +26,6 @@ public class DagligSkaev extends Ordination{
         doser.add(dosis);
     }
 
-    //Nedståendde er implementeret via Java
     @Override
     public double samletDosis() {
         return 0;
