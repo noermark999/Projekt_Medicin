@@ -94,7 +94,7 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		if(!ordination.givDosis(dato)) { //TODO : oprettes en dosis her? Eller tilføj else-statement
+		if(!ordination.givDosis(dato)) { // Dosis oprettes her hvis der ikke returneres false
 			throw new IllegalArgumentException("Datoen er ugyldig");
 		}
 	}
