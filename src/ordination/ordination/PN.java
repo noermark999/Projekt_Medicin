@@ -43,7 +43,11 @@ public class PN extends Ordination{
      * Beregner gennemsnitlig daglig dosis
      */
     public double doegnDosis() {
-        return (antalEnheder * doseringer.size()) / (1.00 * (1 + ChronoUnit.DAYS.between(this.getStartDen(), this.getSlutDen())));
+        if(doseringer.size() == 0) {
+            return 0;
+        } else {
+            return (antalEnheder * doseringer.size()) / (1.00 * (1 + ChronoUnit.DAYS.between(doseringer.get(0), doseringer.get(doseringer.size() - 1))));
+        }
     }
 
     @Override
