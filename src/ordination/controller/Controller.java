@@ -37,10 +37,15 @@ public class Controller {
 	 * Pre: antal >= 0
 	 * @return opretter og returnerer en PN ordination.
 	 */
-	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
-			Patient patient, Laegemiddel laegemiddel, double antal) {
-		// TODO
-		return null;
+	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double antal) {
+		if(startDen.isBefore(slutDen)) {
+			throw new IllegalArgumentException("Start dato skal komme inden slutdato");
+		} else {
+			PN pn = new PN(startDen, slutDen, antal);
+			pn.setLaegemiddel(laegemiddel);
+			patient.addOrdination(pn);
+			return pn;
+		}
 	}
 
 	/**
