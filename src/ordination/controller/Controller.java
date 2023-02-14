@@ -67,7 +67,7 @@ public class Controller {
 			dagligFast.createDosis(LocalTime.of(8,0),morgenAntal);
 			dagligFast.createDosis(LocalTime.of(12,0),middagAntal);
 			dagligFast.createDosis(LocalTime.of(18,0),aftenAntal);
-			dagligFast.createDosis(LocalTime.of(24,0),natAntal);
+			dagligFast.createDosis(LocalTime.of(23,0),natAntal);
 			return dagligFast;
 		}
 	}
