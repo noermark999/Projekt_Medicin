@@ -64,11 +64,16 @@ public class PN extends Ordination{
 
     /**
      * Returnerer antal gange ordinationen er anvendt
+     * @return antal gange givet
      */
     public int getAntalGangeGivet() {
         return doseringer.size();
     }
 
+    /**
+     * Returnerer antal enheder
+     * @return antal enheder
+     */
     public double getAntalEnheder() {
         return antalEnheder;
     }
