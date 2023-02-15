@@ -94,9 +94,9 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
 		if (slutDen.isBefore(startDen)) {
-			throw new IllegalArgumentException("Slut dato er efter startdato");
+			throw new IllegalArgumentException("Slutdato er før startdato");
 		} else if (klokkeSlet.length != antalEnheder.length) {
-			throw new IllegalArgumentException("Antal klokkeslet og enheder passer ikke sammen");
+			throw new IllegalArgumentException("Antal klokkeslæt og enheder passer ikke sammen");
 		} else {
 			DagligSkaev dagligSkaev = new DagligSkaev(startDen, slutDen);
 			dagligSkaev.setLaegemiddel(laegemiddel);
