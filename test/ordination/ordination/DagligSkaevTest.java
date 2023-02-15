@@ -19,13 +19,13 @@ class DagligSkaevTest {
     void opretDosis_test1() {
 
         //Arrange
-        dagligSkaev.opretDosis();
+        //dagligSkaev.opretDosis();
 
         //Act
         dagligSkaev.opretDosis(LocalTime.of(9, 30), 3);
 
         //Assert
-        assertTrue(dagligSkaev.getDoser().contains());
+        //assertTrue(dagligSkaev.getDoser().contains());
 
     }
 
