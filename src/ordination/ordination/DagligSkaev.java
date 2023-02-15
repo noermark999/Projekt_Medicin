@@ -11,7 +11,6 @@ public class DagligSkaev extends Ordination{
     private ArrayList<Dosis> doser = new ArrayList<>();
 
     //Constructor
-    // TODO
     public DagligSkaev(LocalDate startDen, LocalDate slutDen) {
         super(startDen, slutDen);
     }
@@ -22,7 +21,6 @@ public class DagligSkaev extends Ordination{
     }
 
     public void opretDosis(LocalTime tid, double antal) {
-        // TODO
         Dosis dosis = new Dosis(tid, antal);
         doser.add(dosis);
     }
