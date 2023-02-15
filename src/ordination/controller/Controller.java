@@ -34,7 +34,7 @@ public class Controller {
 
 	/**
 	 * Returnerer Controller
-	 * @return
+	 * @return Controller
 	 */
 	public static Controller getTestController() {
 		return new Controller();
