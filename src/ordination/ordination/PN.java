@@ -16,6 +16,8 @@ public class PN extends Ordination{
      * @param startDen startdato
      * @param slutDen slutdato
      * @param antalEnheder antal enheder per dosis
+     * Pre: startDen, slutDen, patient og laegemiddel er ikke null
+     * Pre: antal >= 0
      */
     public PN(LocalDate startDen, LocalDate slutDen, double antalEnheder) {
         super(startDen, slutDen);
