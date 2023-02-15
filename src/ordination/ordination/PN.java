@@ -32,7 +32,9 @@ public class PN extends Ordination{
      * @param givesDen dato for ordination
      */
     public boolean givDosis(LocalDate givesDen) {
-        if(!givesDen.isBefore(this.getStartDen()) && !givesDen.isAfter(this.getSlutDen()))  {
+        if (givesDen == null) {
+            throw new IllegalArgumentException("Dato må ikke være null");
+        } else if(!givesDen.isBefore(this.getStartDen()) && !givesDen.isAfter(this.getSlutDen()))  {
             if(doseringer.size() == 0 || !givesDen.isBefore(doseringer.get(doseringer.size() - 1))) {
                 doseringer.add(givesDen);
             }

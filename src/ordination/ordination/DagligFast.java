@@ -38,7 +38,7 @@ public class DagligFast extends Ordination {
         } else if (antal < 0) {
             throw new IllegalArgumentException("Antal skal være positiv");
         } else if (doser[doser.length - 1] != null) {
-            throw new IllegalArgumentException("Der er allerede oprettet mals antal doser");
+            throw new IllegalArgumentException("Der er allerede oprettet maks antal doser");
         } else {
             for (int i = 0; i < 4; i++) {
                 if (doser[i] == null) {
