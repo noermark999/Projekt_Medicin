@@ -18,12 +18,12 @@ public class DagligFast extends Ordination {
         for (int i = 0; i < 4; i++) {
             result += doser[i].getAntal();
         }
-        return result * (DAYS.between(getStartDen(),getSlutDen())+1);
+        return result * (DAYS.between(getStartDen(), getSlutDen()) + 1);
     }
 
     @Override
     public double doegnDosis() {
-        return samletDosis() / (DAYS.between(getStartDen(),getSlutDen())+1);
+        return samletDosis() / (DAYS.between(getStartDen(), getSlutDen()) + 1);
     }
 
     @Override
@@ -33,10 +33,18 @@ public class DagligFast extends Ordination {
 
     public Dosis createDosis(LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
-        for (int i = 0; i < 4; i++) {
-            if (doser[i] == null) {
-                doser[i] = dosis;
-                return dosis;
+        if (tid == null) {
+            throw new IllegalArgumentException("Tid må ikke være null");
+        } else if (antal < 0) {
+            throw new IllegalArgumentException("Antal skal være positiv");
+        } else if (doser[doser.length - 1] != null) {
+            throw new IllegalArgumentException("Der er allerede oprettet mals antal doser");
+        } else {
+            for (int i = 0; i < 4; i++) {
+                if (doser[i] == null) {
+                    doser[i] = dosis;
+                    return dosis;
+                }
             }
         }
         return null;

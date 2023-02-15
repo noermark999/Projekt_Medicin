@@ -128,7 +128,11 @@ public class Controller {
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		double vaegt = patient.getVaegt();
-		if (vaegt < 25) {
+		if (vaegt < 0) {
+			throw new IllegalArgumentException("Vægten på patienten er negativ");
+		} else if (laegemiddel.getEnhedPrKgPrDoegnLet() < 0 || laegemiddel.getEnhedPrKgPrDoegnNormal() < 0 || laegemiddel.getEnhedPrKgPrDoegnTung() < 0 ) {
+			throw new IllegalArgumentException("Lægemiddellets enhed pr kg pr døgn for let, normal eller tung er negativ");
+		} else if (vaegt < 25) {
 			return vaegt * laegemiddel.getEnhedPrKgPrDoegnLet();
 		} else if (vaegt > 120) {
 			return vaegt * laegemiddel.getEnhedPrKgPrDoegnTung();
