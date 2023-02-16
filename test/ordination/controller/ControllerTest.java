@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ControllerTest {
     private Controller controller;
 
+    @BeforeEach
+    void setup() {
+        controller = Controller.getTestController();
+    }
 
     @Test
     void TC1_opretDagligFastOrdination_11012023() {
@@ -70,83 +74,6 @@ class ControllerTest {
             Controller.getController().opretDagligFastOrdination(startDen,slutDen,patient,laegemiddel,morgenAntal,middagAntal,aftenAntal,natAntal);
         });
         assertEquals(exception.getMessage(), "Antal skal være positiv");
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @BeforeEach
-    void setup() {
-        controller = Controller.getTestController();
     }
 
     //------------------------------------------------------------------------------------------------------------------
