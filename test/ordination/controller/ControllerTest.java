@@ -255,7 +255,7 @@ class ControllerTest {
 
     //-------------------------------------------------------------------------------------------------
     @Test
-    void opretDagligSkaevOrdination_TC1ogTC2() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+    void opretDagligSkaevOrdination_TC1() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
@@ -269,8 +269,27 @@ class ControllerTest {
         DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
 
         //Assert
-
+        assertTrue(patient.getOrdinationer().contains(dagligSkaev));
     }
+
+    @Test
+    void opretDagligSkaevOrdination_TC2() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 02, 16);
+        LocalDate slutDen = LocalDate.of(2023, 02, 26);
+        Patient patient = new Patient("1234567899", "Jens Jensen", 80.0);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracetamol", 0.1, 0.15, 0.16, "Styk");
+        LocalTime[] klokkeslet = new LocalTime[6];
+        double[] antalEnheder = new double[6];
+
+        //Act
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+
+        //Assert
+        assertTrue(patient.getOrdinationer().contains(dagligSkaev));
+    }
+
 
     @Test
     void opretDagligSkaevOrdination_TC3() {
@@ -283,10 +302,11 @@ class ControllerTest {
         LocalTime[] klokkeslet = new LocalTime[6];
         double[] antalEnheder = new double[6];
 
-        //Act
-        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
-
-        //Assert
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+        });
+        assertEquals(exception.getMessage(), "Slut dato er efter startdato");
 
     }
 
@@ -301,10 +321,11 @@ class ControllerTest {
         LocalTime[] klokkeslet = new LocalTime[7];
         double[] antalEnheder = new double[6];
 
-        //Act
-        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
-
-        //Assert
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+        });
+        assertEquals(exception.getMessage(), "Antal klokkeslet og enheder passer ikke sammen");
 
     }
 
@@ -319,10 +340,11 @@ class ControllerTest {
         LocalTime[] klokkeslet = new LocalTime[6];
         double[] antalEnheder = new double[7];
 
-        //Act
-        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
-
-        //Assert
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+        });
+        assertEquals(exception.getMessage(), "Antal klokkeslet og enheder passer ikke sammen");
 
     }
 }
