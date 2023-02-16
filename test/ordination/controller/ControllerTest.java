@@ -10,21 +10,84 @@ import static org.junit.jupiter.api.Assertions.*;
 class ControllerTest {
     private Controller controller;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @BeforeEach
     void setup() {
         controller = Controller.getTestController();
-    }
-
-    @Test
-    void opretPNOrdination() {
-    }
-
-    @Test
-    void opretDagligFastOrdination() {
-    }
-
-    @Test
-    void opretDagligSkaevOrdination() {
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -126,8 +189,4 @@ class ControllerTest {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-
-    @Test
-    void antalOrdinationerPrVægtPrLægemiddel() {
-    }
 }
