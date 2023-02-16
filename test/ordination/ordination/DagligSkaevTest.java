@@ -25,7 +25,6 @@ class DagligSkaevTest {
     }
 
     @Test
-    void opretDosis() {
         void opretDosis_TC2() {
 
             //Arrange
@@ -58,12 +57,11 @@ class DagligSkaevTest {
             dagligSkaev = new DagligSkaev(LocalDate.of(2023, 02, 13), LocalDate.of(2023, 02, 15));
 
             //Act
-            //Dosis dosis = dagligSkaev.opretDosis(, );
+            Dosis dosis = dagligSkaev.opretDosis(null, 1);
 
             //Assert
-            //assertTrue(dagligSkaev.getDoser().contains(dosis));
+            assertTrue(dagligSkaev.getDoser().contains(dosis));
 
         }
 
     }
-}

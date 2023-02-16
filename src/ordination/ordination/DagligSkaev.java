@@ -20,9 +20,10 @@ public class DagligSkaev extends Ordination{
         return new ArrayList<>(doser);
     }
 
-    public void opretDosis(LocalTime tid, double antal) {
+    public Dosis opretDosis(LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
         doser.add(dosis);
+        return dosis;
     }
 
     @Override
