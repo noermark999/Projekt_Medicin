@@ -1,6 +1,11 @@
 package ordination.controller;
 
+import ordination.ordination.DagligFast;
+import ordination.ordination.Laegemiddel;
+import ordination.ordination.Patient;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +16,61 @@ class ControllerTest {
     }
 
     @Test
-    void opretDagligFastOrdination() {
+    void TC1_opretDagligFastOrdination_11012023() {
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023,1,10);
+        LocalDate slutDen = LocalDate.of(2023,1,11);
+        Patient patient = new Patient("123456-7890","Fornavn Efternavn",60);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre",0.1,0.15,0.16,"Styk");
+        double morgenAntal = 1;
+        double middagAntal = 1;
+        double aftenAntal = 1;
+        double natAntal = 1;
+        //Act
+        DagligFast dagligFast = Controller.getController().opretDagligFastOrdination(startDen,slutDen,patient,laegemiddel,morgenAntal,middagAntal,aftenAntal,natAntal);
+
+        //assert
+        boolean expectedBoolean = true;
+        boolean actualBoolean = patient.getOrdinationer().contains(dagligFast);
+        assertTrue(actualBoolean);
+    }
+
+    @Test
+    void TC2_opretDagligFastOrdination_09012023() {
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023,1,10);
+        LocalDate slutDen = LocalDate.of(2023,1,9);
+        Patient patient = new Patient("123456-7890","Fornavn Efternavn",60);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre",0.1,0.15,0.16,"Styk");
+        double morgenAntal = 1;
+        double middagAntal = 1;
+        double aftenAntal = 1;
+        double natAntal = 1;
+
+        //Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Controller.getController().opretDagligFastOrdination(startDen,slutDen,patient,laegemiddel,morgenAntal,middagAntal,aftenAntal,natAntal);
+        });
+        assertEquals(exception.getMessage(), "Slut dato er efter startdato");
+    }
+
+    @Test
+    void TC3_opretDagligFastOrdination_morgenAntalNegativ1_11012023() {
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023,1,10);
+        LocalDate slutDen = LocalDate.of(2023,1,11);
+        Patient patient = new Patient("123456-7890","Fornavn Efternavn",60);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre",0.1,0.15,0.16,"Styk");
+        double morgenAntal = -1;
+        double middagAntal = 1;
+        double aftenAntal = 1;
+        double natAntal = 1;
+
+        //Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Controller.getController().opretDagligFastOrdination(startDen,slutDen,patient,laegemiddel,morgenAntal,middagAntal,aftenAntal,natAntal);
+        });
+        assertEquals(exception.getMessage(), "Antal skal være positiv");
     }
 
     @Test
