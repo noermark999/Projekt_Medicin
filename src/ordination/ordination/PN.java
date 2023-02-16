@@ -26,6 +26,14 @@ public class PN extends Ordination{
     }
 
     /**
+     * Returnerer doseringerne
+     * @return doseringer
+     */
+    public ArrayList<LocalDate> getDoseringer() {
+        return doseringer;
+    }
+
+    /**
      * Registrerer at der er givet en dosis paa dagen givesDen
      * Returnerer true hvis givesDen er inden for ordinationens gyldighedsperiode og efter den sidste ordination, og datoen huskes
      * Retrurner false ellers og datoen givesDen ignoreres
@@ -37,8 +45,8 @@ public class PN extends Ordination{
         } else if(!givesDen.isBefore(this.getStartDen()) && !givesDen.isAfter(this.getSlutDen()))  {
             if(doseringer.size() == 0 || !givesDen.isBefore(doseringer.get(doseringer.size() - 1))) {
                 doseringer.add(givesDen);
+                return true;
             }
-            return true;
         }
         return false;   
     }
