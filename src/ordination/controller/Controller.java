@@ -23,7 +23,7 @@ public class Controller {
 
 	/**
 	 * Returnerer Controller hvis der er en, ellers opretter ny controller
-	 * @return
+	 * @return controller
 	 */
 	public static Controller getController() {
 		if (controller == null) {
@@ -34,7 +34,7 @@ public class Controller {
 
 	/**
 	 * Returnerer Controller
-	 * @return Controller
+	 * @return controller
 	 */
 	public static Controller getTestController() {
 		return new Controller();
