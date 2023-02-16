@@ -1,14 +1,12 @@
 package ordination.controller;
 
-import ordination.ordination.DagligFast;
-import ordination.ordination.Laegemiddel;
-import ordination.ordination.PN;
-import ordination.ordination.Patient;
+import ordination.ordination.*;
 import ordination.storage.Storage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -253,5 +251,78 @@ class ControllerTest {
             controller.antalOrdinationerPrVægtPrLægemiddel(vægtStart,vægtSlut,laegemiddel);
         });
         assertEquals(exception.getMessage(), "Vægt start må ikke være større end vægt slut");
+    }
+
+    //-------------------------------------------------------------------------------------------------
+    @Test
+    void opretDagligSkaevOrdination_TC1ogTC2() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 02, 16);
+        LocalDate slutDen = LocalDate.of(2023, 02, 26);
+        Patient patient = new Patient("1234567899", "Jens Jensen", 80.0);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracetamol", 0.1, 0.15, 0.16, "Styk");
+        LocalTime[] klokkeslet = new LocalTime[6];
+        double[] antalEnheder = new double[6];
+
+        //Act
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+
+        //Assert
+
+    }
+
+    @Test
+    void opretDagligSkaevOrdination_TC3() {
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 02, 16);
+        LocalDate slutDen = LocalDate.of(2023, 02, 06);
+        Patient patient = new Patient("1234567899", "Jens Jensen", 80.0);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracetamol", 0.1, 0.15, 0.16, "Styk");
+        LocalTime[] klokkeslet = new LocalTime[6];
+        double[] antalEnheder = new double[6];
+
+        //Act
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+
+        //Assert
+
+    }
+
+    @Test
+    void opretDagligSkaevOrdination_TC4() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 02, 16);
+        LocalDate slutDen = LocalDate.of(2023, 02, 26);
+        Patient patient = new Patient("1234567899", "Jens Jensen", 80.0);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracetamol", 0.1, 0.15, 0.16, "Styk");
+        LocalTime[] klokkeslet = new LocalTime[7];
+        double[] antalEnheder = new double[6];
+
+        //Act
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+
+        //Assert
+
+    }
+
+    @Test
+    void opretDagligSkaevOrdination_TC5() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 02, 16);
+        LocalDate slutDen = LocalDate.of(2023, 02, 26);
+        Patient patient = new Patient("1234567899", "Jens Jensen", 80.0);
+        Laegemiddel laegemiddel = new Laegemiddel("Paracetamol", 0.1, 0.15, 0.16, "Styk");
+        LocalTime[] klokkeslet = new LocalTime[6];
+        double[] antalEnheder = new double[7];
+
+        //Act
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeslet, antalEnheder);
+
+        //Assert
+
     }
 }
