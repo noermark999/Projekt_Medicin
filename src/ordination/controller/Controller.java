@@ -149,11 +149,15 @@ public class Controller {
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
 		int result = 0;
-		for (Patient p : storage.getAllPatienter()){
-			if (p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
-				for (Ordination o : p.getOrdinationer()) {
-					if (o.getLaegemiddel().equals(laegemiddel)) {
-						result++;
+		if (vægtStart > vægtSlut) {
+			throw new IllegalArgumentException("Vægt start må ikke være større end vægt slut");
+		} else {
+			for (Patient p : storage.getAllPatienter()) {
+				if (p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
+					for (Ordination o : p.getOrdinationer()) {
+						if (o.getLaegemiddel().equals(laegemiddel)) {
+							result++;
+						}
 					}
 				}
 			}

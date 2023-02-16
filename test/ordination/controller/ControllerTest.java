@@ -3,6 +3,7 @@ package ordination.controller;
 import ordination.ordination.DagligFast;
 import ordination.ordination.Laegemiddel;
 import ordination.ordination.Patient;
+import ordination.storage.Storage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -93,7 +94,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_24kg() {
+    void TC2_anbefaletDosisPrDoegn_24kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 24);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -107,7 +108,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_25kg() {
+    void TC3_anbefaletDosisPrDoegn_25kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 25);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -121,7 +122,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_120kg() {
+    void TC4_anbefaletDosisPrDoegn_120kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 120);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -135,7 +136,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_121kg() {
+    void TC5_anbefaletDosisPrDoegn_121kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 121);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -149,7 +150,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_minus1kg() {
+    void TC6_anbefaletDosisPrDoegn_minus1kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", -10);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -158,11 +159,11 @@ class ControllerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             controller.anbefaletDosisPrDoegn(patient, laegemiddel);
         });
-        assertEquals(exception.getMessage(), "vægt skal være positive");
+        assertEquals(exception.getMessage(), "Vægten på patienten er negativ");
     }
 
     @Test
-    void TC1_anbefaletDosisPrDoegn_70kg_laegemiddelEnhedPerKiloDoegnLetMinus0d15() {
+    void TC7_anbefaletDosisPrDoegn_70kg_laegemiddelEnhedPerKiloDoegnLetMinus0d15() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 70);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", -0.15, 0.15, 0.16, "Styk");
@@ -171,8 +172,38 @@ class ControllerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             controller.anbefaletDosisPrDoegn(patient, laegemiddel);
         });
-        assertEquals(exception.getMessage(), "enhedPrKgPrDoegnlet skal være positiv");
+        assertEquals(exception.getMessage(), "Lægemiddellets enhed pr kg pr døgn for let, normal eller tung er negativ");
     }
 
     //------------------------------------------------------------------------------------------------------------------
+    @Test
+    void TC1_AntalOrdinationerPrVaegtPrLaegemiddel_startErMindreEndSlut() {
+        //Arrange
+        double vægtStart = 25;
+        double vægtSlut = 100;
+        controller.createSomeObjects();
+        Laegemiddel laegemiddel = controller.getAllLaegemidler().get(1);
+
+        //Act
+        int expected = controller.antalOrdinationerPrVægtPrLægemiddel(vægtStart,vægtSlut,laegemiddel);
+
+        //Assert
+        int actual = 3;
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void TC2_AntalOrdinationerPrVaegtPrLaegemiddel_slutErMindreEndStart() {
+        //Arrange
+        double vægtStart = 50;
+        double vægtSlut = 40;
+        controller.createSomeObjects();
+        Laegemiddel laegemiddel = controller.getAllLaegemidler().get(1);
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.antalOrdinationerPrVægtPrLægemiddel(vægtStart,vægtSlut,laegemiddel);
+        });
+        assertEquals(exception.getMessage(), "Vægt start må ikke være større end vægt slut");
+    }
 }
