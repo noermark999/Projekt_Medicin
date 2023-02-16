@@ -1,13 +1,13 @@
 package ordination.ordination;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DagligFastTest {
     private DagligFast dagligFast;
 
@@ -19,6 +19,7 @@ class DagligFastTest {
     }
 
     @Test
+    @Order(1)
     void TC1_createDosis_antal0() {
         // Arrange
         LocalTime givDen = LocalTime.of(8,0);
@@ -36,6 +37,7 @@ class DagligFastTest {
     }
 
     @Test
+    @Order(2)
     void TC2_createDosis_antal2() {
         // Arrange
         LocalTime givDen = LocalTime.of(8,0);
@@ -54,6 +56,7 @@ class DagligFastTest {
     }
 
     @Test
+    @Order(3)
     void TC3_createDosis_antalMinus1() {
         // Arrange
         LocalTime givDen = LocalTime.of(8,0);
@@ -66,6 +69,7 @@ class DagligFastTest {
     }
 
     @Test
+    @Order(4)
     void TC4_createDosis_tidNull() {
         // Arrange
         LocalTime givDen = null;
@@ -78,6 +82,7 @@ class DagligFastTest {
     }
 
     @Test
+    @Order(5)
     void TC5_createDosis_femDoseringer() {
         // Arrange
         LocalTime givDen = LocalTime.of(8,0);

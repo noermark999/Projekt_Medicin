@@ -2,14 +2,13 @@ package ordination.controller;
 
 import ordination.ordination.*;
 import ordination.storage.Storage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ControllerTest {
     private Controller controller;
 
@@ -19,6 +18,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(10)
     void TC1_opretPNOrdination_startDenErMindreEndSlutDen() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023,1,10);
@@ -35,6 +35,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(11)
     void TC2_opretPNOrdination_slutDenErMindreEndStartDen() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 1, 10);
@@ -51,6 +52,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(12)
     void TC3_opretPNOrdination_AntalErNegativ() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 1, 10);
@@ -67,6 +69,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(13)
     void TC1_opretDagligFastOrdination_11012023() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023,1,10);
@@ -86,6 +89,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(14)
     void TC2_opretDagligFastOrdination_09012023() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023,1,10);
@@ -105,6 +109,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(15)
     void TC3_opretDagligFastOrdination_morgenAntalNegativ1_11012023() {
         //Arrange
         LocalDate startDen = LocalDate.of(2023,1,10);
@@ -126,6 +131,7 @@ class ControllerTest {
     //------------------------------------------------------------------------------------------------------------------
 
     @Test
+    @Order(1)
     void TC1_anbefaletDosisPrDoegn_70kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 70);
@@ -140,6 +146,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(2)
     void TC2_anbefaletDosisPrDoegn_24kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 24);
@@ -154,6 +161,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(3)
     void TC3_anbefaletDosisPrDoegn_25kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 25);
@@ -168,6 +176,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(4)
     void TC4_anbefaletDosisPrDoegn_120kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 120);
@@ -182,6 +191,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(5)
     void TC5_anbefaletDosisPrDoegn_121kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 121);
@@ -196,6 +206,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(6)
     void TC6_anbefaletDosisPrDoegn_minus1kg() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", -10);
@@ -209,6 +220,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(7)
     void TC7_anbefaletDosisPrDoegn_70kg_laegemiddelEnhedPerKiloDoegnLetMinus0d15() {
         // Arrange
         Patient patient = new Patient("121256-0512", "Jane Jensen", 70);
@@ -223,6 +235,7 @@ class ControllerTest {
 
     //------------------------------------------------------------------------------------------------------------------
     @Test
+    @Order(8)
     void TC1_AntalOrdinationerPrVaegtPrLaegemiddel_startErMindreEndSlut() {
         //Arrange
         double vægtStart = 25;
@@ -239,6 +252,7 @@ class ControllerTest {
     }
 
     @Test
+    @Order(9)
     void TC2_AntalOrdinationerPrVaegtPrLaegemiddel_slutErMindreEndStart() {
         //Arrange
         double vægtStart = 50;
@@ -255,7 +269,8 @@ class ControllerTest {
 
     //-------------------------------------------------------------------------------------------------
     @Test
-    void opretDagligSkaevOrdination_TC1() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+    @Order(16)
+    void TC1_opretDagligSkaevOrdination() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
@@ -273,7 +288,8 @@ class ControllerTest {
     }
 
     @Test
-    void opretDagligSkaevOrdination_TC2() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+    @Order(17)
+    void TC2_opretDagligSkaevOrdination() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
@@ -292,7 +308,8 @@ class ControllerTest {
 
 
     @Test
-    void opretDagligSkaevOrdination_TC3() {
+    @Order(18)
+    void TC3_opretDagligSkaevOrdination() {
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
@@ -311,7 +328,8 @@ class ControllerTest {
     }
 
     @Test
-    void opretDagligSkaevOrdination_TC4() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+    @Order(19)
+    void TC4_opretDagligSkaevOrdination() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
@@ -330,7 +348,8 @@ class ControllerTest {
     }
 
     @Test
-    void opretDagligSkaevOrdination_TC5() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
+    @Order(20)
+    void TC5_opretDagligSkaevOrdination() { //startDen, slutDen, patient, laegemiddel, klokkeslæt, antalenheder
 
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 02, 16);
