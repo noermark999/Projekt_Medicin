@@ -65,7 +65,7 @@ class ControllerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             Controller.getController().opretPNOrdination(startDen,slutDen,patient,laegemiddel,antal);
         });
-        assertEquals(exception.getMessage(), "Start dato skal komme inden slutdato");
+        assertEquals(exception.getMessage(), "Antal må ikke være negativ");
     }
 
     @Test

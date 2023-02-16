@@ -50,6 +50,8 @@ public class Controller {
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double antal) {
 		if(startDen.isAfter(slutDen)) {
 			throw new IllegalArgumentException("Start dato skal komme inden slutdato");
+		} else if (antal < 0) {
+			throw new IllegalArgumentException("Antal må ikke være negativ");
 		} else {
 			PN pn = new PN(startDen, slutDen, antal);
 			pn.setLaegemiddel(laegemiddel);
